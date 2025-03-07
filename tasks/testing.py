@@ -9,5 +9,5 @@ def run_tests(ctx, *, nature: str = "unit"):
         ctx.run(
             f"DJANGO_SETTINGS_MODULE={constants.DJANGO_SETTINGS_MODULE} "
             f"PYTHONPATH={constants.PYTHON_PATH} "
-            f"uv run pytest src/tests/{nature}"
+            f"uv run pytest tests/{nature}"
         )

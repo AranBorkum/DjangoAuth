@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
+    "django_auth.django_app",
 ]
 
 MIDDLEWARE = [
@@ -52,7 +53,7 @@ MIDDLEWARE = [
 
 ROOT_URLCONF = "project.urls"
 
-# AUTH_USER_MODEL = "project.UserModel"
+AUTH_USER_MODEL = "django_app.UserModel"
 
 TEMPLATES = [
     {
@@ -70,19 +71,19 @@ TEMPLATES = [
     },
 ]
 
-# REST_FRAMEWORK = {
-#     "DEFAULT_AUTHENTICATION_CLASSES": (
-#         "rest_framework_simplejwt.authentication.JWTAuthentication",
-#     )
-# }
+REST_FRAMEWORK = {
+    "DEFAULT_AUTHENTICATION_CLASSES": (
+        "rest_framework_simplejwt.authentication.JWTAuthentication",
+    )
+}
 
-# SIMPLE_JWT = {
-#     "ACCESS_TOKEN_LIFETIME": datetime.timedelta(minutes=10),
-#     "REFRESH_TOKEN_LIFETIME": datetime.timedelta(days=1),
-#     "AUTH_HEADER_TYPES": ("Bearer",),
-#     "ALGORITHM": "HS256",
-#     "SIGNING_KEY": SECRET_KEY,
-# }
+SIMPLE_JWT = {
+    "ACCESS_TOKEN_LIFETIME": datetime.timedelta(minutes=10),
+    "REFRESH_TOKEN_LIFETIME": datetime.timedelta(days=1),
+    "AUTH_HEADER_TYPES": ("Bearer",),
+    "ALGORITHM": "HS256",
+    "SIGNING_KEY": SECRET_KEY,
+}
 
 WSGI_APPLICATION = "project.wsgi.application"
 

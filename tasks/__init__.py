@@ -11,5 +11,5 @@ namespace = invoke.Collection(
         backend_type_checking.run_python_type_checker,
     ),
     *(testing.run_tests,),
-    *(django.run_server,),
+    *(django.run_server, django.makemigrations, django.migrate),
 )
