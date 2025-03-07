@@ -19,13 +19,13 @@ where = ["src"]  # Tells setuptools to look inside "src" for packages
 [dependency-groups]
 dev = [
 	"mypy>=1.15.0",
-	"django-stubs[compatible-mypy]>=5.1.2",
 	"ruff>=0.9.9",
 	"invoke>=2.2.0",
 	"pytest>=8.3.5",
 	"pytest-django>=4.10.0",
 	"faker>=36.2.2",
 	"freezegun>=1.5.1",
+	"django-stubs[compatible-mypy]>=5.1.3",
 ]
 
 [tool.ruff]
@@ -71,5 +71,3 @@ exclude = [
 	"migrations/",
 ]
 ignore_missing_imports = true
-#mypy_path = "src/project"
-plugins = ["mypy_django_plugin.main"]
