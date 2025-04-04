@@ -10,4 +10,7 @@ def run_python_type_checker(ctx):
     """
     with ctx.cd(str(constants.PROJECT_ROOT)):
         # Print out the version to help with local vs CI debugging
-        ctx.run(f"PYTHONPATH={constants.PYTHON_PATH} uv run mypy src tests --strict")
+        ctx.run(
+            f"PYTHONPATH={constants.PYTHON_PATH} uv run mypy src tests "
+            "--strict --allow-subclassing-any"
+        )

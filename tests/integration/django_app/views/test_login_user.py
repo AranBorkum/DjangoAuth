@@ -1,23 +1,24 @@
 import jwt
-import pytest
 from django.conf import settings
-from rest_framework import response, status
+from pytest import mark
+from rest_framework import status
+from rest_framework.response import Response
 
-from django_auth.django_app import models
+from django_auth.models import UserModel
 
 
 class TestCaseLoginUserView:
-    @pytest.mark.django_db
-    def test_view_returns_200(self, login_user_response: response.Response) -> None:
+    @mark.django_db
+    def test_view_returns_200(self, login_user_response: Response) -> None:
         assert login_user_response.status_code == status.HTTP_200_OK
 
-    @pytest.mark.django_db
+    @mark.django_db
     def test_view_returns_valid_jwt(
         self,
-        login_user_response: response.Response,
+        login_user_response: Response,
         email: str,
         full_name: str,
-        verified_user_model: models.UserModel,
+        verified_user_model: UserModel,
     ) -> None:
         response_data = login_user_response.data
         assert isinstance(response_data, dict)
@@ -34,17 +35,17 @@ class TestCaseLoginUserView:
             algorithms=[settings.SIMPLE_JWT["ALGORITHM"]],
         )["user_id"] == str(verified_user_model.id)
 
-    @pytest.mark.django_db
+    @mark.django_db
     def test_invalid_payload_returns_400(
-        self, login_user_invalid_payload_response: response.Response
+        self, login_user_invalid_payload_response: Response
     ) -> None:
         assert (
             login_user_invalid_payload_response.status_code
             == status.HTTP_400_BAD_REQUEST
         )
 
-    @pytest.mark.django_db
+    @mark.django_db
     def test_valid_payload_unverified_user(
-        self, login_unverified_user_response: response.Response
+        self, login_unverified_user_response: Response
     ) -> None:
         assert login_unverified_user_response.status_code == status.HTTP_400_BAD_REQUEST

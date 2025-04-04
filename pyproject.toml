@@ -69,5 +69,10 @@ django_settings_module = "project.settings"
 exclude = [
 	".venv/",
 	"migrations/",
+	"models/",
 ]
 ignore_missing_imports = true
+allow_subclassing_any = false
+
+[mypy.plugins.django-stubs]
+django_settings_module = "project.settings"

@@ -1,7 +1,7 @@
-import datetime
 import json
-import typing
-import uuid
+from datetime import datetime
+from typing import Any
+from uuid import UUID, uuid4
 
 
 class User:
@@ -14,11 +14,11 @@ class User:
         is_verified: bool,
         is_staff: bool,
         is_superuser: bool,
-        date_joined: datetime.datetime,
-        last_login: datetime.datetime,
-        id_: uuid.UUID | None = None,
+        date_joined: datetime,
+        last_login: datetime,
+        id_: UUID | None = None,
     ):
-        self.id = id_ or uuid.uuid4()
+        self.id = id_ or uuid4()
         self.first_name = first_name
         self.last_name = last_name
         self.email = email
@@ -33,7 +33,7 @@ class User:
     def full_name(self) -> str:
         return f"{self.first_name} {self.last_name}"
 
-    def to_json(self) -> dict[str, typing.Any]:
+    def to_json(self) -> dict[str, Any]:
         output = {
             "first_name": self.first_name,
             "last_name": self.last_name,
