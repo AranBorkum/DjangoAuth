@@ -1,14 +1,14 @@
-import pytest
+from pytest import mark
 
-from django_auth.core import entities
-from django_auth.django_app import models
+from django_auth.core.entities import User
+from django_auth.models import UserModel
 
 
 class TestCaseUserModel:
-    @pytest.mark.django_db
-    def test_to_entity(self, unverified_user_model: models.UserModel) -> None:
-        user: entities.User = unverified_user_model.to_entity()
-        assert isinstance(user, entities.User)
+    @mark.django_db
+    def test_to_entity(self, unverified_user_model: UserModel) -> None:
+        user: User = unverified_user_model.to_entity()
+        assert isinstance(user, User)
         assert user.id == unverified_user_model.id
         assert user.first_name == unverified_user_model.first_name
         assert user.last_name == unverified_user_model.last_name
